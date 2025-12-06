@@ -1,0 +1,26 @@
+ /* Monospace Unicode Font for Headings */
+.heading-mono, h1, h2, h3, h4, h5, h6, button {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Math Serif Italic Unicode Font for Body Text */
+.text-serif, p, span:not(.heading-mono), a:not(.heading-mono), li, div:not(.heading-mono) {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Unicode Character Mapping */
+@font-face {
+    font-family: 'MonospaceUnicode';
+    src: local('Courier New');
+    unicode-range: U+1D670-U+1D6A3;
+}
+
+@font-face {
+    font-family: 'MathSerifItalic';
+    src: local('Times New Roman');
+    unicode-range: U+1D434-U+1D467;
+  } 
