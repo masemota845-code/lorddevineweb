@@ -1,0 +1,57 @@
+ function initializeParticles() {
+    const particlesContainer = document.querySelector('.bg-particles');
+    if (!particlesContainer) return;
+    
+    // Create floating particles
+    for (let i = 0; i < 50; i++) {
+        createParticle(particlesContainer);
+    }
+}
+
+function createParticle(container) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.cssText = `
+        position: absolute;
+        width: ${Math.random() * 4 + 2}px;
+        height: ${Math.random() * 4 + 2}px;
+        background: ${getRandomColor()};
+        border-radius: 50%;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        opacity: ${Math.random() * 0.5 + 0.2};
+        animation: float ${Math.random() * 10 + 10}s infinite linear;
+    `;
+    
+    container.appendChild(particle);
+}
+
+function getRandomColor() {
+    const colors = [
+        'rgba(126, 34, 206, 0.6)',
+        'rgba(30, 60, 114, 0.6)',
+        'rgba(147, 51, 234, 0.6)',
+        'rgba(42, 82, 152, 0.6)'
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+// Add particle animation styles
+const particleStyles = document.createElement('style');
+particleStyles.textContent = `
+    @keyframes float {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(100px, 100px) rotate(90deg); }
+        50% { transform: translate(0, 200px) rotate(180deg); }
+        75% { transform: translate(-100px, 100px) rotate(270deg); }
+        100% { transform: translate(0, 0) rotate(360deg); }
+    }
+    
+    .particle {
+        pointer-events: none;
+        filter: blur(1px);
+    }
+`;
+document.head.appendChild(particleStyles);
+
+window.initializeParticles = initializeParticles; 
