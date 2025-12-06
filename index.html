@@ -1,282 +1,207 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorddevine | Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Animated background elements */
-        .bg-animation {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .floating {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 15s infinite ease-in-out;
-        }
-        
-        .floating:nth-child(1) { width: 80px; height: 80px; left: 10%; top: 20%; animation-delay: 0s; }
-        .floating:nth-child(2) { width: 60px; height: 60px; right: 15%; top: 60%; animation-delay: 2s; }
-        .floating:nth-child(3) { width: 100px; height: 100px; left: 70%; top: 30%; animation-delay: 4s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px 40px;
-            border-radius: 25px;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .logo {
-            font-size: 4em;
-            margin-bottom: 10px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        h1 {
-            color: #1e3c72;
-            margin-bottom: 10px;
-            font-size: 3em;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #1e3c72, #7e22ce);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-        
-        .status {
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            display: inline-block;
-            margin: 20px 0;
-            font-weight: bold;
-            animation: glow 2s infinite;
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
-        }
-        
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4); }
-            50% { box-shadow: 0 5px 25px rgba(239, 68, 68, 0.8); }
-        }
-        
-        .hype-box {
-            background: linear-gradient(135deg, #7e22ce, #1e3c72);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 25px 0;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hype-box::before {
-            content: '⚡';
-            position: absolute;
-            font-size: 8em;
-            opacity: 0.1;
-            right: -20px;
-            top: -20px;
-        }
-        
-        .hype-box h2 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .hype-box p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            position: relative;
-        }
-        
-        .skills {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        
-        .skill-badge {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-        
-        button {
-            background: linear-gradient(135deg, #7e22ce, #1e3c72);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(126, 34, 206, 0.4);
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(126, 34, 206, 0.6);
-        }
-        
-        .footer {
-            margin-top: 25px;
-            color: #999;
-            font-size: 0.9em;
-        }
-        
-        .social {
-            margin-top: 15px;
-            font-size: 1.8em;
-        }
-        
-        .social span {
-            margin: 0 10px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-        
-        .social span:hover {
-            transform: scale(1.3);
-        }
-    </style>
+    <title>LordDevine | Ultimate Developer Empire</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/fonts.css">
 </head>
 <body>
-    <div class="bg-animation">
-        <div class="floating"></div>
-        <div class="floating"></div>
-        <div class="floating"></div>
-    </div>
+    <div class="bg-particles"></div>
     
-    <div class="container">
-        <div class="logo">👨‍💻</div>
-        <h1>Lorddevine</h1>
-        <p class="subtitle">Elite Developer • Creative Visionary • Code Architect</p>
-        
-        <div class="status">🚧 IN DEVELOPMENT 🚧</div>
-        
-        <div class="hype-box">
-            <h2>🔥 The Legend Behind The Code</h2>
-            <p>
-                Lorddevine isn't just a developer - he's a digital craftsman who turns 
-                caffeine into elegant code. With fingers that dance across the keyboard 
-                like a maestro conducting a symphony, he transforms complex problems 
-                into beautiful solutions. Every line of code is a masterpiece, every 
-                project a testament to dedication and skill. 
-            </p>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">👨‍💻</div>
+            <h2 class="heading-mono">𝙻𝚘𝚛𝚍𝙳𝚎𝚟𝚒𝚗𝚎</h2>
         </div>
-        
-        <div class="skills">
-            <span class="skill-badge">⚡ Lightning Fast</span>
-            <span class="skill-badge">🎯 Precision Coder</span>
-            <span class="skill-badge">🚀 Innovation Master</span>
-            <span class="skill-badge">💎 Quality Obsessed</span>
+        <div class="sidebar-menu">
+            <a href="#home" class="menu-item active" data-section="home">
+                <span class="icon">🏠</span>
+                <span class="heading-mono">𝙷𝚘𝚖𝚎</span>
+            </a>
+            <a href="#ai-studio" class="menu-item" data-section="ai-studio">
+                <span class="icon">🤖</span>
+                <span class="heading-mono">𝙰𝙸 𝚂𝚝𝚞𝚍𝚒𝚘</span>
+            </a>
+            <a href="#bot-arsenal" class="menu-item" data-section="bot-arsenal">
+                <span class="icon">🔧</span>
+                <span class="heading-mono">𝙱𝚘𝚝 𝙰𝚛𝚜𝚎𝚗𝚊𝚕</span>
+            </a>
+            <a href="#coding-hub" class="menu-item" data-section="coding-hub">
+                <span class="icon">💻</span>
+                <span class="heading-mono">𝙲𝚘𝚍𝚒𝚗𝚐 𝙷𝚞𝚋</span>
+            </a>
+            <a href="#academy" class="menu-item" data-section="academy">
+                <span class="icon">📚</span>
+                <span class="heading-mono">𝙰𝚌𝚊𝚍𝚎𝚖𝚢</span>
+            </a>
+            <a href="#design-studio" class="menu-item" data-section="design-studio">
+                <span class="icon">🎨</span>
+                <span class="heading-mono">𝙳𝚎𝚜𝚒𝚐𝚗 𝚂𝚝𝚞𝚍𝚒𝚘</span>
+            </a>
+            <a href="#toolbox" class="menu-item" data-section="toolbox">
+                <span class="icon">🛠️</span>
+                <span class="heading-mono">𝚃𝚘𝚘𝚕𝚋𝚘𝚡</span>
+            </a>
+            <a href="#ai-assistant" class="menu-item" data-section="ai-assistant">
+                <span class="icon">✨</span>
+                <span class="heading-mono">𝙰𝙸 𝙷𝚞𝚋</span>
+            </a>
+            <a href="#advanced-lab" class="menu-item" data-section="advanced-lab">
+                <span class="icon">⚡</span>
+                <span class="heading-mono">𝙰𝚍𝚟𝚊𝚗𝚌𝚎𝚍 𝙻𝚊𝚋</span>
+            </a>
         </div>
-        
-        <button onclick="unleashPower()">Experience The Magic ✨</button>
-        
-        <div class="social">
-            <span>💼</span>
-            <span>🐱</span>
-            <span>💻</span>
-            <span>🌐</span>
+        <div class="sidebar-footer">
+            <button class="toggle-sidebar" onclick="toggleSidebar()">☰</button>
         </div>
-        
-        <div class="footer">
-            <p><strong>Something incredible is coming...</strong></p>
-            <p>Crafted with passion by Lorddevine | © 2024</p>
-        </div>
-    </div>
-    
-    <script>
-        function unleashPower() {
-            const messages = [
-                '🔥 Pure coding excellence!',
-                '⚡ The code wizard strikes again!',
-                '🚀 Innovation at its finest!',
-                '💎 Masterclass in development!',
-                '🎯 Precision and perfection combined!'
-            ];
-            
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            alert(randomMessage);
-            
-            document.querySelector('.container').style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                document.querySelector('.container').style.transform = 'scale(1)';
-            }, 200);
-        }
-        
-        document.querySelector('.container').style.transition = 'transform 0.2s';
-        
-        // Add click animations to social icons
-        document.querySelectorAll('.social span').forEach(icon => {
-            icon.addEventListener('click', function() {
-                this.style.transform = 'scale(1.5) rotate(360deg)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 300);
-            });
-        });
-    </script>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1 class="heading-mono">𝙻𝚘𝚛𝚍𝙳𝚎𝚟𝚒𝚗𝚎 𝚄𝚕𝚝𝚒𝚖𝚊𝚝𝚎 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛 𝙴𝚖𝚙𝚒𝚛𝚎</h1>
+                <p class="text-serif">𝘛𝘩𝘦 𝘊𝘰𝘮𝘱𝘭𝘦𝘵𝘦 𝘞𝘦𝘣 𝘋𝘦𝘷𝘦𝘭𝘰𝘱𝘮𝘦𝘯𝘵 & 𝘈𝘶𝘵𝘰𝘮𝘢𝘵𝘪𝘰𝘯 𝘗𝘰𝘸𝘦𝘳𝘩𝘰𝘶𝘴𝘦</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card" onclick="navigateToSection('ai-studio')">
+                        <div class="card-icon">🤖</div>
+                        <h3 class="heading-mono">𝙰𝙸 𝙲𝚘𝚍𝚎 𝚂𝚝𝚞𝚍𝚒𝚘</h3>
+                        <p class="text-serif">𝘈𝘥𝘷𝘢𝘯𝘤𝘦𝘥 𝘈𝘐-𝘱𝘰𝘸𝘦𝘳𝘦𝘥 𝘤𝘰𝘥𝘦 𝘣𝘶𝘪𝘭𝘥𝘦𝘳 𝘸𝘪𝘵𝘩 𝘳𝘦𝘢𝘭-𝘵𝘪𝘮𝘦 𝘦𝘹𝘦𝘤𝘶𝘵𝘪𝘰𝘯, 𝘥𝘦𝘣𝘶𝘨𝘨𝘪𝘯𝘨, 𝘢𝘯𝘥 𝘥𝘦𝘰𝘣𝘧𝘶𝘴𝘤𝘢𝘵𝘪𝘰𝘯 𝘧𝘰𝘳 𝘈𝘓𝘓 𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘮𝘪𝘯𝘨 𝘭𝘢𝘯𝘨𝘶𝘢𝘨𝘦𝘴</p>
+                        <button class="btn-primary">𝙻𝚊𝚞𝚗𝚌𝚑 𝚂𝚝𝚞𝚍𝚒𝚘</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('bot-arsenal')">
+                        <div class="card-icon">🔧</div>
+                        <h3 class="heading-mono">𝙱𝚘𝚝 & 𝙰𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚘𝚗 𝙰𝚛𝚜𝚎𝚗𝚊𝚕</h3>
+                        <p class="text-serif">𝘊𝘰𝘮𝘱𝘳𝘦𝘩𝘦𝘯𝘴𝘪𝘷𝘦 𝘣𝘰𝘵 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘮𝘦𝘯𝘵 𝘩𝘶𝘣 𝘸𝘪𝘵𝘩 𝘞𝘩𝘢𝘵𝘴𝘈𝘱𝘱 𝘣𝘰𝘵 𝘵𝘦𝘮𝘱𝘭𝘢𝘵𝘦𝘴, 𝘢𝘶𝘵𝘰𝘮𝘢𝘵𝘪𝘰𝘯 𝘴𝘤𝘳𝘪𝘱𝘵𝘴, 𝘢𝘯𝘥 𝘷𝘪𝘴𝘶𝘢𝘭 𝘣𝘰𝘵 𝘣𝘶𝘪𝘭𝘥𝘦𝘳</p>
+                        <button class="btn-primary">𝙾𝚙𝚎𝚗 𝙰𝚛𝚜𝚎𝚗𝚊𝚕</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('coding-hub')">
+                        <div class="card-icon">💻</div>
+                        <h3 class="heading-mono">𝙲𝚘𝚖𝚙𝚕𝚎𝚝𝚎 𝙲𝚘𝚍𝚒𝚗𝚐 𝙷𝚞𝚋</h3>
+                        <p class="text-serif">𝘖𝘳𝘨𝘢𝘯𝘪𝘻𝘦𝘥 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘧𝘰𝘳 𝘢𝘭𝘭 𝘱𝘳𝘰𝘫𝘦𝘤𝘵𝘴, 𝘈𝘗𝘐𝘴, 𝘕𝘰𝘥𝘦.𝘫𝘴 𝘮𝘰𝘥𝘶𝘭𝘦𝘴, 𝘢𝘯𝘥 𝘤𝘶𝘴𝘵𝘰𝘮 𝘤𝘰𝘮𝘱𝘰𝘯𝘦𝘯𝘵𝘴</p>
+                        <button class="btn-primary">𝙴𝚗𝚝𝚎𝚛 𝙷𝚞𝚋</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('academy')">
+                        <div class="card-icon">📚</div>
+                        <h3 class="heading-mono">𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛 𝙻𝚎𝚊𝚛𝚗𝚒𝚗𝚐 𝙰𝚌𝚊𝚍𝚎𝚖𝚢</h3>
+                        <p class="text-serif">𝘊𝘰𝘮𝘱𝘭𝘦𝘵𝘦 𝘦𝘥𝘶𝘤𝘢𝘵𝘪𝘰𝘯𝘢𝘭 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮 𝘸𝘪𝘵𝘩 𝘎𝘪𝘵𝘏𝘶𝘣, 𝘝𝘦𝘳𝘤𝘦𝘭, 𝘣𝘰𝘵 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘮𝘦𝘯𝘵, 𝘢𝘯𝘥 𝘮𝘰𝘳𝘦</p>
+                        <button class="btn-primary">𝚂𝚝𝚊𝚛𝚝 𝙻𝚎𝚊𝚛𝚗𝚒𝚗𝚐</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('design-studio')">
+                        <div class="card-icon">🎨</div>
+                        <h3 class="heading-mono">𝙲𝚞𝚜𝚝𝚘𝚖 𝙳𝚎𝚜𝚒𝚐𝚗 𝚂𝚝𝚞𝚍𝚒𝚘</h3>
+                        <p class="text-serif">𝘊𝘳𝘦𝘢𝘵𝘪𝘷𝘦 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘧𝘰𝘳 𝘊𝘚𝘚 𝘢𝘯𝘪𝘮𝘢𝘵𝘪𝘰𝘯𝘴, 𝘜𝘐 𝘤𝘰𝘮𝘱𝘰𝘯𝘦𝘯𝘵𝘴, 𝘣𝘢𝘥𝘨𝘦𝘴, 𝘢𝘯𝘥 𝘨𝘳𝘢𝘱𝘩𝘪𝘤 𝘢𝘴𝘴𝘦𝘵𝘴</p>
+                        <button class="btn-primary">𝙾𝚙𝚎𝚗 𝚂𝚝𝚞𝚍𝚒𝚘</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('toolbox')">
+                        <div class="card-icon">🛠️</div>
+                        <h3 class="heading-mono">𝙿𝚎𝚛𝚜𝚘𝚗𝚊𝚕 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛 𝚃𝚘𝚘𝚕𝚋𝚘𝚡</h3>
+                        <p class="text-serif">𝘌𝘴𝘴𝘦𝘯𝘵𝘪𝘢𝘭 𝘶𝘵𝘪𝘭𝘪𝘵𝘪𝘦𝘴: 𝘵𝘦𝘹𝘵 𝘵𝘳𝘢𝘯𝘴𝘧𝘰𝘳𝘮𝘦𝘳, 𝘤𝘰𝘥𝘦 𝘴𝘯𝘪𝘱𝘱𝘦𝘵𝘴, 𝘑𝘚𝘖𝘕/𝘟𝘔𝘓 𝘵𝘰𝘰𝘭𝘴, 𝘢𝘯𝘥 𝘮𝘰𝘳𝘦</p>
+                        <button class="btn-primary">𝙾𝚙𝚎𝚗 𝚃𝚘𝚘𝚕𝚋𝚘𝚡</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('ai-assistant')">
+                        <div class="card-icon">✨</div>
+                        <h3 class="heading-mono">𝙰𝙸 𝙰𝚜𝚜𝚒𝚜𝚝𝚊𝚗𝚝 𝙷𝚞𝚋</h3>
+                        <p class="text-serif">𝘐𝘯𝘵𝘦𝘭𝘭𝘪𝘨𝘦𝘯𝘵 𝘈𝘐 𝘤𝘰𝘥𝘪𝘯𝘨 𝘢𝘴𝘴𝘪𝘴𝘵𝘢𝘯𝘵, 𝘪𝘮𝘢𝘨𝘦 𝘨𝘦𝘯𝘦𝘳𝘢𝘵𝘰𝘳, 𝘤𝘰𝘥𝘦 𝘳𝘦𝘷𝘪𝘦𝘸𝘦𝘳, 𝘢𝘯𝘥 𝘣𝘶𝘨 𝘥𝘦𝘵𝘦𝘤𝘵𝘰𝘳</p>
+                        <button class="btn-primary">𝙰𝚌𝚝𝚒𝚟𝚊𝚝𝚎 𝙰𝙸</button>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateToSection('advanced-lab')">
+                        <div class="card-icon">⚡</div>
+                        <h3 class="heading-mono">𝙰𝚍𝚟𝚊𝚗𝚌𝚎𝚍 𝙵𝚎𝚊𝚝𝚞𝚛𝚎𝚜 𝙻𝚊𝚋</h3>
+                        <p class="text-serif">𝘌𝘹𝘱𝘦𝘳𝘪𝘮𝘦𝘯𝘵𝘢𝘭 𝘧𝘦𝘢𝘵𝘶𝘳𝘦𝘴: 𝘥𝘢𝘵𝘢𝘣𝘢𝘴𝘦 𝘮𝘢𝘯𝘢𝘨𝘦𝘳, 𝘈𝘗𝘐 𝘵𝘦𝘴𝘵𝘦𝘳, 𝘞𝘦𝘣𝘚𝘰𝘤𝘬𝘦𝘵𝘴, 𝘢𝘯𝘥 𝘮𝘰𝘳𝘦</p>
+                        <button class="btn-primary">𝙴𝚗𝚝𝚎𝚛 𝙻𝚊𝚋</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Code Studio Section -->
+        <section id="ai-studio" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙰𝙸 𝙲𝚘𝚍𝚎 𝚂𝚝𝚞𝚍𝚒𝚘</h2>
+                <p class="text-serif">𝘈𝘥𝘷𝘢𝘯𝘤𝘦𝘥 𝘈𝘐-𝘱𝘰𝘸𝘦𝘳𝘦𝘥 𝘤𝘰𝘥𝘦 𝘣𝘶𝘪𝘭𝘥𝘦𝘳 𝘢𝘯𝘥 𝘢𝘯𝘢𝘭𝘺𝘻𝘦𝘳</p>
+            </div>
+            <div id="ai-studio-content"></div>
+        </section>
+
+        <!-- Bot Arsenal Section -->
+        <section id="bot-arsenal" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙱𝚘𝚝 & 𝙰𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚘𝚗 𝙰𝚛𝚜𝚎𝚗𝚊𝚕</h2>
+                <p class="text-serif">𝘊𝘰𝘮𝘱𝘳𝘦𝘩𝘦𝘯𝘴𝘪𝘷𝘦 𝘣𝘰𝘵 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘮𝘦𝘯𝘵 𝘩𝘶𝘣</p>
+            </div>
+            <div id="bot-arsenal-content"></div>
+        </section>
+
+        <!-- Coding Hub Section -->
+        <section id="coding-hub" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙲𝚘𝚖𝚙𝚕𝚎𝚝𝚎 𝙲𝚘𝚍𝚒𝚗𝚐 𝙷𝚞𝚋</h2>
+                <p class="text-serif">𝘖𝘳𝘨𝘢𝘯𝘪𝘻𝘦𝘥 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘧𝘰𝘳 𝘢𝘭𝘭 𝘱𝘳𝘰𝘫𝘦𝘤𝘵𝘴</p>
+            </div>
+            <div id="coding-hub-content"></div>
+        </section>
+
+        <!-- Academy Section -->
+        <section id="academy" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛 𝙻𝚎𝚊𝚛𝚗𝚒𝚗𝚐 𝙰𝚌𝚊𝚍𝚎𝚖𝚢</h2>
+                <p class="text-serif">𝘊𝘰𝘮𝘱𝘳𝘦𝘩𝘦𝘯𝘴𝘪𝘷𝘦 𝘦𝘥𝘶𝘤𝘢𝘵𝘪𝘰𝘯𝘢𝘭 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮</p>
+            </div>
+            <div id="academy-content"></div>
+        </section>
+
+        <!-- Design Studio Section -->
+        <section id="design-studio" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙲𝚞𝚜𝚝𝚘𝚖 𝙳𝚎𝚜𝚒𝚐𝚗 𝚂𝚝𝚞𝚍𝚒𝚘</h2>
+                <p class="text-serif">𝘊𝘳𝘦𝘢𝘵𝘪𝘷𝘦 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘧𝘰𝘳 𝘷𝘪𝘴𝘶𝘢𝘭 𝘦𝘭𝘦𝘮𝘦𝘯𝘵𝘴</p>
+            </div>
+            <div id="design-studio-content"></div>
+        </section>
+
+        <!-- Toolbox Section -->
+        <section id="toolbox" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙿𝚎𝚛𝚜𝚘𝚗𝚊𝚕 𝙳𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛 𝚃𝚘𝚘𝚕𝚋𝚘𝚡</h2>
+                <p class="text-serif">𝘌𝘴𝘴𝘦𝘯𝘵𝘪𝘢𝘭 𝘶𝘵𝘪𝘭𝘪𝘵𝘪𝘦𝘴 𝘢𝘯𝘥 𝘵𝘰𝘰𝘭𝘴</p>
+            </div>
+            <div id="toolbox-content"></div>
+        </section>
+
+        <!-- AI Assistant Section -->
+        <section id="ai-assistant" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙰𝙸 𝙰𝚜𝚜𝚒𝚜𝚝𝚊𝚗𝚝 𝙷𝚞𝚋</h2>
+                <p class="text-serif">𝘐𝘯𝘵𝘦𝘭𝘭𝘪𝘨𝘦𝘯𝘵 𝘈𝘐 𝘤𝘢𝘱𝘢𝘣𝘪𝘭𝘪𝘵𝘪𝘦𝘴</p>
+            </div>
+            <div id="ai-assistant-content"></div>
+        </section>
+
+        <!-- Advanced Lab Section -->
+        <section id="advanced-lab" class="section">
+            <div class="section-header">
+                <h2 class="heading-mono">𝙰𝚍𝚟𝚊𝚗𝚌𝚎𝚍 𝙵𝚎𝚊𝚝𝚞𝚛𝚎𝚜 𝙻𝚊𝚋</h2>
+                <p class="text-serif">𝘌𝘹𝘱𝘦𝘳𝘪𝘮𝘦𝘯𝘵𝘢𝘭 𝘢𝘯𝘥 𝘱𝘰𝘸𝘦𝘳𝘧𝘶𝘭 𝘧𝘦𝘢𝘵𝘶𝘳𝘦𝘴</p>
+            </div>
+            <div id="advanced-lab-content"></div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/particles.js"></script>
 </body>
-</html>
+    </html> 
